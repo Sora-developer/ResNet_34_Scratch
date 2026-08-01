@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pth
+*.pt
+*.ckpt
+*.log
+.vscode/
+.idea/
+.DS_Store
