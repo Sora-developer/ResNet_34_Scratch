@@ -61,5 +61,5 @@ loss/accuracy history) in the working directory.
 
 
 ## Loss and Accuracy curves after running the model for 40 epochs
-![Loss Curve][Loss_Curves_Final_40epochs.png]
-![Acc Curve][Acc_Curves_Final_40epochs.png]
+![Loss Curve](Loss_Curves_Final_40epochs.png)
+![Acc Curve](Acc_Curves_Final_40epochs.png)
