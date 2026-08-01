@@ -9,5 +9,3 @@ __pycache__/
 .vscode/
 .idea/
 .DS_Store
-Acc_Curves_Final_40epochs.png
-Loss_Curves_Final_40epochs.png
