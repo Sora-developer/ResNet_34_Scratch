@@ -58,3 +58,7 @@ loss/accuracy history) in the working directory.
 | `--checkpoint-path`   | `resnet34_food101.pth`      | Model weights to load           |
 | `--data-root`         | `data`                      | Food101 download/cache directory|
 | `--rows`, `--cols`    | `4`, `4`                    | Prediction grid size             |
+
+## Loss and Accuracy curves after running the model for 40 epochs
+![Loss Curve][Loss_Curves_Final_40epochs.png]
+![Acc Curve][Acc_Curves_Final_40epochs.png]
