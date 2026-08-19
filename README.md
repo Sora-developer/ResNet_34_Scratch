@@ -16,9 +16,9 @@ loop — as a demonstration of understanding the paper rather than calling a pre
 | Parameters | 21,336,485 (~21.3M) |
 | Dataset | Food101 (75,750 train / 25,250 test) |
 | Epochs | 40 |
-| Final test accuracy | _fill in from `training_results.pth`, see below_ |
-| Final test loss | _fill in from `training_results.pth`, see below_ |
-| Hardware | _e.g. 2x NVIDIA T4 / A100, fill in_ |
+| Final test accuracy | 66.99% |
+| Final test loss | 1.9008 |
+| Hardware | 2x NVIDIA T4 (Kaggle) |
 
 To pull the exact final-epoch numbers out of a saved results file:
 ```bash
