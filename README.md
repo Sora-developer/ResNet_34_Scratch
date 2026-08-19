@@ -38,8 +38,8 @@ loss/accuracy history) in the working directory.
 
 ### `train.py` arguments
 
-| Argument             | Default                    | Description                              |
-|----------------------|-----------------------------|-------------------------------------------|
+| Argument              | Default                     | Description                               |
+|-----------------------|-----------------------------|-------------------------------------------|
 | `--epochs`            | `15`                        | Number of training epochs                 |
 | `--learning-rate`     | `0.001`                     | Adam learning rate                        |
 | `--weight-decay`      | `1e-4`                      | Adam weight decay                         |
@@ -53,11 +53,11 @@ loss/accuracy history) in the working directory.
 
 ### `predict.py` arguments
 
-| Argument             | Default                    | Description                    |
-|----------------------|-----------------------------|----------------------------------|
+| Argument              | Default                     | Description                     |
+|-----------------------|-----------------------------|---------------------------------|
 | `--checkpoint-path`   | `resnet34_food101.pth`      | Model weights to load           |
 | `--data-root`         | `data`                      | Food101 download/cache directory|
-| `--rows`, `--cols`    | `4`, `4`                    | Prediction grid size             |
+| `--rows`, `--cols`    | `4`, `4`                    | Prediction grid size            |
 
 
 ## Loss and Accuracy curves after running the model for 40 epochs
