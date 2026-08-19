@@ -5,7 +5,7 @@ available GPUs on a single node.
 
 ## Structure
 
-| File                   | Purpose                                                              |
+| File                   | Purpose                                                               |
 |------------------------|-----------------------------------------------------------------------|
 | `model_builder.py`     | `ResBlock` and `ResNet` architecture                                  |
 | `data_setup.py`        | Food101 dataset/transform construction and distributed dataloaders    |
