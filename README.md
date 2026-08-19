@@ -1,7 +1,29 @@
 # ResNet-34 from Scratch — Food101 (DDP)
 
-ResNet-34 implemented from scratch and trained on Food101 with `DistributedDataParallel` across all
-available GPUs on a single node.
+ResNet-34 implemented from scratch (paper: [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385))
+and trained on [Food101](https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/) (101 classes,
+101,000 images) with `DistributedDataParallel` across all available GPUs on a single node.
+
+**Why from scratch, not `torchvision.models.resnet34`?** The point of this repo is the implementation
+itself — the residual block, the identity-vs-projection skip logic, and a correct multi-GPU training
+loop — as a demonstration of understanding the paper rather than calling a pretrained model.
+
+## Results
+
+| Metric | Value |
+|---|---|
+| Model | ResNet-34 (from scratch, no pretraining) |
+| Parameters | 21,336,485 (~21.3M) |
+| Dataset | Food101 (75,750 train / 25,250 test) |
+| Epochs | 40 |
+| Final test accuracy | _fill in from `training_results.pth`, see below_ |
+| Final test loss | _fill in from `training_results.pth`, see below_ |
+| Hardware | _e.g. 2x NVIDIA T4 / A100, fill in_ |
+
+To pull the exact final-epoch numbers out of a saved results file:
+```bash
+python -c "import torch; r = torch.load('training_results.pth'); print(f\"Test Acc: {r['test_acc'][-1]:.4f} | Test Loss: {r['test_loss'][-1]:.4f}\")"
+```
 
 ## Structure
 
@@ -14,6 +36,7 @@ available GPUs on a single node.
 | `train.py`             | Entry point: launches training across GPUs via `mp.spawn`             |
 | `predict.py`           | Loads a checkpoint and visualizes predictions on the test set         |
 | `utils.py`             | Checkpoint save/load, loss and accuracy curve plotting                |
+| `tests/test_model.py`  | Unit tests for architecture correctness (shapes, params, skip logic)  |
 
 ## Usage
 
@@ -31,6 +54,9 @@ python -c "import torch, utils; utils.plot_curves(torch.load('training_results.p
 
 # Run inference on random test samples
 python predict.py
+
+# Run the unit tests
+pytest tests/ -v
 ```
 
 Training produces `resnet34_food101.pth` (model weights) and `training_results.pth` (per-epoch
@@ -63,3 +89,7 @@ loss/accuracy history) in the working directory.
 ## Loss and Accuracy curves after running the model for 40 epochs
 ![Loss Curve](Loss_Curves_Final_40epochs.png)
 ![Acc Curve](Acc_Curves_Final_40epochs.png)
+
+## License
+
+[MIT](LICENSE)
