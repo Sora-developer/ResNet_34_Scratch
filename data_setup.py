@@ -7,10 +7,10 @@ from torchvision import datasets, transforms
 NUM_WORKERS = 2
 
 
-def build_transforms() -> transforms.Compose:
-    """Builds a composition of data transformations for training and testing datasets.
+def build_train_transforms() -> transforms.Compose:
+    """Builds the training-time augmentation pipeline.
     Returns:
-        transforms.Compose: A composition of data transformations.
+        transforms.Compose: Random-crop + flip + TrivialAugment pipeline used only for training.
     """
     return transforms.Compose([
         transforms.Resize(size=(232, 232)),
@@ -21,17 +21,38 @@ def build_transforms() -> transforms.Compose:
     ])
 
 
+def build_eval_transforms() -> transforms.Compose:
+    """Builds the deterministic evaluation pipeline (no augmentation).
+
+    Test/validation data must never see random augmentation - doing so makes
+    reported test accuracy/loss noisy and non-reproducible, and corrupts any
+    "original vs predicted" visualization since the "original" image is no
+    longer the actual original.
+
+    Returns:
+        transforms.Compose: Resize + center-crop pipeline used for test/inference.
+    """
+    return transforms.Compose([
+        transforms.Resize(size=(232, 232)),
+        transforms.CenterCrop(size=(224, 224)),
+        transforms.ToTensor(),
+    ])
+
+
 def create_datasets(root: str = "data") -> Tuple[Dataset, Dataset]:
     """Creates training and testing datasets for the Food101 dataset.
     Args:
         root (str): The root directory where the dataset will be stored or loaded from.
     Returns:
         Tuple[Dataset, Dataset]: A tuple containing the training and testing datasets.
+            The training set uses augmentation; the test set is deterministic.
     """
-    transform = build_transforms()
-
-    train_dataset = datasets.Food101(root=root, split="train", transform=transform, download=True)
-    test_dataset = datasets.Food101(root=root, split="test", transform=transform, download=True)
+    train_dataset = datasets.Food101(
+        root=root, split="train", transform=build_train_transforms(), download=True
+    )
+    test_dataset = datasets.Food101(
+        root=root, split="test", transform=build_eval_transforms(), download=True
+    )
 
     return train_dataset, test_dataset
 
