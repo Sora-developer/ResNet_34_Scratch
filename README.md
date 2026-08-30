@@ -20,10 +20,12 @@ loop — as a demonstration of understanding the paper rather than calling a pre
 | Final test loss | 1.9008 |
 | Hardware | 2x NVIDIA T4 (Kaggle) |
 
-To pull the exact final-epoch numbers out of a saved results file:
-```bash
-python -c "import torch; r = torch.load('training_results.pth'); print(f\"Test Acc: {r['test_acc'][-1]:.4f} | Test Loss: {r['test_loss'][-1]:.4f}\")"
-```
+### Training Time Benchmark (15 Epochs)
+
+| Configuration | Epochs | Time | Speedup |
+|---|---|---|---|
+| Single GPU | 15 | 3h 38m 12s | 1.00x |
+| Dual GPU (DDP) | 15 | 1h 21m 35s | ~2.67x |
 
 ## Structure
 
@@ -89,6 +91,10 @@ loss/accuracy history) in the working directory.
 ## Loss and Accuracy curves after running the model for 40 epochs
 ![Loss Curve](Loss_Curves_Final_40epochs.png)
 ![Acc Curve](Acc_Curves_Final_40epochs.png)
+
+## Loss and Accuracy curves: 15 epochs without weight decay and lr-scheduling
+![Loss Curve without weight decay](Curves_without_w_decay/Loss_Curve_15_epochs.png)
+![Acc Cuve without weight decay](Curves_without_w_decay/Acc_Curve_15_epochs.png)
 
 ## License
 
