@@ -16,7 +16,7 @@ loop — as a demonstration of understanding the paper rather than calling a pre
 | Parameters | 21,336,485 (~21.3M) |
 | Dataset | Food101 (75,750 train / 25,250 test) |
 | Epochs | 40 |
-| Final test accuracy | 66.99% |
+| Final test accuracy | 69.99% |
 | Final test loss | 1.9008 |
 | Hardware | 2x NVIDIA T4 (Kaggle) |
 
